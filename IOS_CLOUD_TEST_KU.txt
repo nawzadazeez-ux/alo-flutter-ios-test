@@ -1,0 +1,20 @@
+ALO SOLAR ENERGY — iPhone Cloud Test
+
+ئەم وەشانە بۆ Codemagic iOS Simulator ئامادە کراوە.
+Apple Developer Account پێویست نییە بۆ Simulator preview.
+
+هەنگاوەکان:
+1) ئەم ZIP ـە Extract بکە.
+2) لە GitHub repo ـێکی نوێ دروست بکە، بۆ نموونە: alo-flutter-ios-test
+3) هەموو ناوەڕۆکی فولدەری Extract کراو Upload بکە (codemagic.yaml لە root بمێنێت).
+4) بچۆ Codemagic و GitHub account ـەکەت connect بکە.
+5) repo ـی alo-flutter-ios-test هەڵبژێرە.
+6) Codemagic codemagic.yaml دەبینێت؛ workflow ـی:
+   Alo Solar Energy - iPhone Simulator
+   Run بکە.
+7) کاتێک build سەرکەوتوو بوو، لە artifact ـی Runner.app / Quick Launch، iPhone simulator لە browser بکەرەوە.
+
+تێبینی:
+- workflow ـەکە ios folder ـی clean دروست دەکات، چونکە project ـی ئێستا iOS scaffold ـی Flutter ـی تێدا نییە.
+- هیچ Apple signing پێویست نییە بۆ simulator build.
+- بۆ دابەزاندنی واقعی لەسەر iPhone دواتر code signing پێویست دەبێت.

@@ -1,0 +1,34 @@
+workflows:
+  alo-ios-simulator:
+    name: Alo Solar Energy - iPhone Simulator
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Create clean iOS platform files
+        script: |
+          rm -rf ios
+          flutter create --platforms=ios .
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios
+          pod install
+      - name: Build iOS Simulator app
+        script: |
+          flutter build ios --simulator --debug
+      - name: Package simulator build
+        script: |
+          cd build/ios/iphonesimulator
+          if [ -d Runner.app ]; then
+            ditto -c -k --sequesterRsrc --keepParent Runner.app AloSolar-iOS-Simulator.zip
+          fi
+    artifacts:
+      - build/ios/iphonesimulator/*.app
+      - build/ios/iphonesimulator/AloSolar-iOS-Simulator.zip
+      - /tmp/xcodebuild_logs/*.log
