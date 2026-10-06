@@ -15,10 +15,14 @@ workflows:
       - name: Get Flutter packages
         script: |
           flutter pub get
-      - name: Install CocoaPods dependencies
+      - name: Prepare CocoaPods dependencies
         script: |
-          cd ios
-          pod install
+          if [ -f ios/Podfile ]; then
+            cd ios
+            pod install
+          else
+            echo "No Podfile found. Flutter project has no iOS CocoaPods dependencies to install."
+          fi
       - name: Build iOS Simulator app
         script: |
           flutter build ios --simulator --debug
